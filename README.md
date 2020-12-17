@@ -9,8 +9,13 @@ This docker image can be used for single page apps (SPAs) in history mode. It se
 To create your own dockerfile, simply copy your distribution folder (often `dist/` or `build/`) to `/app` into the image.
 
 ```Dockerfile
+# append the following in your existing dockerfile
+# this will create a multi-stage docker build for minimizing size and security vulnerabilities
+# ...
+
 FROM steebchen/nginx-spa:stable
 
+# adapt the `dist/` folder to the output directory your build tool uses (such as `dist/`, `build/` or `www/`).
 COPY dist/ /app
 
 EXPOSE 80
